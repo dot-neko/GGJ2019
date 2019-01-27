@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    
     public float runSpeed = 40f;
     public CharMovement character;
-
+    public Animator animator;
     float HorizontalMove = 0f;
     bool jump = false;
     bool crouch = false; 
@@ -16,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
     void Update ()
     {
         HorizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Paso", Mathf.Abs(HorizontalMove));
 
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            animator.SetBool("Saltando", true);
+            animator.SetFloat("Paso",0f);
         }
         if (Input.GetButtonDown("Crouch"))
         {
@@ -30,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    public void OnLanding ()
+    {
+        animator.SetBool("Saltando", false);
+    }
 
     void FixedUpdate()
     {
