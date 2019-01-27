@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     public CharMovement character;
     public Animator animator;
+    public AudioSource audio;
     float HorizontalMove = 0f;
     bool jump = false;
     bool crouch = false; 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnLanding ()
     {
         animator.SetBool("Saltando", false);
+        audio.Play();   
     }
     public void OnCrouching (bool Agachandose)
     {
