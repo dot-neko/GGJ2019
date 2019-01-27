@@ -37,7 +37,10 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("Saltando", false);
     }
-
+    public void OnCrouching (bool Agachandose)
+    {
+        animator.SetBool("Agachandose", Agachandose);
+    }
     void FixedUpdate()
     {
         character.Move(HorizontalMove * Time.fixedDeltaTime, crouch, jump);
